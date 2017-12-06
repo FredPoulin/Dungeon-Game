@@ -5,10 +5,32 @@ using UnityEngine;
 public class Player : Character
 {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    /// <summary>
+    /// character stats
+    /// </summary>
+
+    [SerializeField]
+    private Stats health;
+    [SerializeField]
+    private Stats mana;
+    [SerializeField]
+    private Stats experience;
+
+    [SerializeField]
+    private float healthMaxValue;
+
+    [SerializeField]
+    private float manaMaxValue;
+
+
+    // Use this for initialization
+
+    protected override void Start()
+    {
+        health.Initialize(healthMaxValue, healthMaxValue);
+        mana.Initialize(manaMaxValue, manaMaxValue);
+        base.Start();
+    }
 	
 	// Update is called once per frame
 	protected override void Update () {
@@ -20,6 +42,20 @@ public class Player : Character
     private void GetInput()
     {
         direction = Vector2.zero;
+
+        //DEBUG ONLY
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            health.CurrentValue -= 5;
+            mana.CurrentValue -= 5;
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            health.CurrentValue += 5;
+            mana.CurrentValue += 5;
+
+        }
+
 
         if (Input.GetKey(KeyCode.A))
         {

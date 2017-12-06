@@ -13,7 +13,7 @@ public abstract class Character : MonoBehaviour {
     private Animator animator;
 
     // Use this for initialization
-    void Start () {
+    protected virtual void Start () {
         animator = GetComponent<Animator>();
     }
 	
